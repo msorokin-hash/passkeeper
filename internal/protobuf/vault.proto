@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package gophkeeper.v1;
+option go_package = "github.com/msorokin-hash/passkeeper/internal/protobuf";
+
+message Empty {}
+
+message Item {
+  bytes  data        = 1;
+  string record_type = 2;
+  string meta        = 3;
+}
+
+message AddDataRequest {
+  Item item = 1;
+}
+
+message GetDataRequest {
+  string id = 1;
+}
+
+message GetDataResponse {
+  string id  = 1;
+  Item   item = 2;
+}
+
+message DeleteDataRequest {
+  string id = 1;
+}
+
+message UpdateDataRequest {
+  string id   = 1;
+  bytes  data = 2;
+  string meta = 3;
+}
+
+message GetAllByTypeRequest {
+  string record_type = 1;
+}
+
+message GetAllByTypeResponse {
+  message TypeItem {
+    string id   = 1;
+    string meta = 2;
+  }
+  repeated TypeItem items = 1;
+}
+
+service VaultService {
+  rpc AddData(AddDataRequest) returns (Empty);
+  rpc GetData(GetDataRequest) returns (GetDataResponse);
+  rpc DeleteData(DeleteDataRequest) returns (Empty);
+  rpc UpdateData(UpdateDataRequest) returns (Empty);
+  rpc GetAllByType(GetAllByTypeRequest) returns (GetAllByTypeResponse);
+}

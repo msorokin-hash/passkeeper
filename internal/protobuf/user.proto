@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package gophkeeper.v1;
+option go_package = "github.com/msorokin-hash/passkeeper/internal/protobuf";
+
+message RegisterRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message LoginRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  string token = 1;
+}
+
+service UserService {
+  rpc Register(RegisterRequest) returns (AuthResponse);
+  rpc Login(LoginRequest) returns (AuthResponse);
+}
