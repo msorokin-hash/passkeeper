@@ -1,14 +1,14 @@
 # GophKeeper — Password and Private Data Manager
 
-Educational client–server application for secure storage of users private data (passwords, text notes, bank cards, and files).
-
-## Project Status
-
 ![Go](https://img.shields.io/badge/go-1.22+-blue)
 ![gRPC](https://img.shields.io/badge/gRPC-enabled-green)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-supported-blue)
 
 ---
+
+## Overview
+
+Educational client–server application for secure storage of users private data (passwords, text notes, bank cards, and files).
 
 ## Architecture
 
