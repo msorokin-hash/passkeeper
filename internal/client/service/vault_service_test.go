@@ -22,14 +22,14 @@ func TestDeleteData(t *testing.T) {
 	tests := []struct {
 		name       string
 		id         string
-		returnResp *proto.Empty
+		returnResp *proto.DeleteDataResponse
 		returnErr  error
 		wantErr    error
 	}{
 		{
 			name:       "success",
 			id:         "1",
-			returnResp: &proto.Empty{},
+			returnResp: &proto.DeleteDataResponse{},
 			returnErr:  nil,
 			wantErr:    nil,
 		},

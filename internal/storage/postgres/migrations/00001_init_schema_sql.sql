@@ -2,9 +2,9 @@
 -- +goose StatementBegin
 CREATE TABLE users (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  login VARCHAR UNIQUE NOT NULL,
-  password_hash VARCHAR NOT NULL,
-  encrypted_secret VARCHAR NOT NULL
+  login VARCHAR(64) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  encrypted_secret VARCHAR(255) NOT NULL
 );
 COMMENT ON COLUMN users.login IS 'Логин пользователя';
 COMMENT ON COLUMN users.password_hash IS 'Хэш пароля пользователя';
@@ -15,7 +15,7 @@ CREATE TABLE user_data (
   user_id UUID NOT NULL REFERENCES users (id),
   encrypted_data BYTEA NOT NULL,
   meta JSONB NOT NULL,
-  data_type VARCHAR NOT NULL,
+  data_type VARCHAR(64) NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()  
 );
@@ -28,6 +28,6 @@ COMMENT ON COLUMN user_data.updated_at IS 'Timestamp обновления зап
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE users;
 DROP TABLE user_data;
+DROP TABLE users;
 -- +goose StatementEnd

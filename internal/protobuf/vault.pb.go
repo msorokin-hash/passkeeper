@@ -7,12 +7,11 @@
 package protobuf
 
 import (
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
-
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
-	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
 
 const (
@@ -61,7 +60,7 @@ func (*Empty) Descriptor() ([]byte, []int) {
 type Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Data          []byte                 `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	RecordType    string                 `protobuf:"bytes,2,opt,name=record_type,json=recordType,proto3" json:"record_type,omitempty"` // было: type
+	RecordType    string                 `protobuf:"bytes,2,opt,name=record_type,json=recordType,proto3" json:"record_type,omitempty"`
 	Meta          string                 `protobuf:"bytes,3,opt,name=meta,proto3" json:"meta,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -162,6 +161,42 @@ func (x *AddDataRequest) GetItem() *Item {
 	return nil
 }
 
+type AddDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddDataResponse) Reset() {
+	*x = AddDataResponse{}
+	mi := &file_internal_protobuf_vault_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddDataResponse) ProtoMessage() {}
+
+func (x *AddDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_protobuf_vault_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddDataResponse.ProtoReflect.Descriptor instead.
+func (*AddDataResponse) Descriptor() ([]byte, []int) {
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{3}
+}
+
 type GetDataRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -171,7 +206,7 @@ type GetDataRequest struct {
 
 func (x *GetDataRequest) Reset() {
 	*x = GetDataRequest{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[3]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +218,7 @@ func (x *GetDataRequest) String() string {
 func (*GetDataRequest) ProtoMessage() {}
 
 func (x *GetDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[3]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +231,7 @@ func (x *GetDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDataRequest.ProtoReflect.Descriptor instead.
 func (*GetDataRequest) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{3}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetDataRequest) GetId() string {
@@ -216,7 +251,7 @@ type GetDataResponse struct {
 
 func (x *GetDataResponse) Reset() {
 	*x = GetDataResponse{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[4]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +263,7 @@ func (x *GetDataResponse) String() string {
 func (*GetDataResponse) ProtoMessage() {}
 
 func (x *GetDataResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[4]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +276,7 @@ func (x *GetDataResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDataResponse.ProtoReflect.Descriptor instead.
 func (*GetDataResponse) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{4}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetDataResponse) GetId() string {
@@ -267,7 +302,7 @@ type DeleteDataRequest struct {
 
 func (x *DeleteDataRequest) Reset() {
 	*x = DeleteDataRequest{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[5]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -279,7 +314,7 @@ func (x *DeleteDataRequest) String() string {
 func (*DeleteDataRequest) ProtoMessage() {}
 
 func (x *DeleteDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[5]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -292,7 +327,7 @@ func (x *DeleteDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDataRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDataRequest) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{5}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteDataRequest) GetId() string {
@@ -300,6 +335,42 @@ func (x *DeleteDataRequest) GetId() string {
 		return x.Id
 	}
 	return ""
+}
+
+type DeleteDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteDataResponse) Reset() {
+	*x = DeleteDataResponse{}
+	mi := &file_internal_protobuf_vault_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteDataResponse) ProtoMessage() {}
+
+func (x *DeleteDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_protobuf_vault_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteDataResponse.ProtoReflect.Descriptor instead.
+func (*DeleteDataResponse) Descriptor() ([]byte, []int) {
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{7}
 }
 
 type UpdateDataRequest struct {
@@ -313,7 +384,7 @@ type UpdateDataRequest struct {
 
 func (x *UpdateDataRequest) Reset() {
 	*x = UpdateDataRequest{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[6]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -325,7 +396,7 @@ func (x *UpdateDataRequest) String() string {
 func (*UpdateDataRequest) ProtoMessage() {}
 
 func (x *UpdateDataRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[6]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -338,7 +409,7 @@ func (x *UpdateDataRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDataRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDataRequest) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{6}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateDataRequest) GetId() string {
@@ -362,6 +433,42 @@ func (x *UpdateDataRequest) GetMeta() string {
 	return ""
 }
 
+type UpdateDataResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateDataResponse) Reset() {
+	*x = UpdateDataResponse{}
+	mi := &file_internal_protobuf_vault_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateDataResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateDataResponse) ProtoMessage() {}
+
+func (x *UpdateDataResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_internal_protobuf_vault_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateDataResponse.ProtoReflect.Descriptor instead.
+func (*UpdateDataResponse) Descriptor() ([]byte, []int) {
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{9}
+}
+
 type GetAllByTypeRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RecordType    string                 `protobuf:"bytes,1,opt,name=record_type,json=recordType,proto3" json:"record_type,omitempty"`
@@ -371,7 +478,7 @@ type GetAllByTypeRequest struct {
 
 func (x *GetAllByTypeRequest) Reset() {
 	*x = GetAllByTypeRequest{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[7]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -383,7 +490,7 @@ func (x *GetAllByTypeRequest) String() string {
 func (*GetAllByTypeRequest) ProtoMessage() {}
 
 func (x *GetAllByTypeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[7]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -396,7 +503,7 @@ func (x *GetAllByTypeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllByTypeRequest.ProtoReflect.Descriptor instead.
 func (*GetAllByTypeRequest) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{7}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetAllByTypeRequest) GetRecordType() string {
@@ -415,7 +522,7 @@ type GetAllByTypeResponse struct {
 
 func (x *GetAllByTypeResponse) Reset() {
 	*x = GetAllByTypeResponse{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[8]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -427,7 +534,7 @@ func (x *GetAllByTypeResponse) String() string {
 func (*GetAllByTypeResponse) ProtoMessage() {}
 
 func (x *GetAllByTypeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[8]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -440,7 +547,7 @@ func (x *GetAllByTypeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllByTypeResponse.ProtoReflect.Descriptor instead.
 func (*GetAllByTypeResponse) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{8}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetAllByTypeResponse) GetItems() []*GetAllByTypeResponse_TypeItem {
@@ -460,7 +567,7 @@ type GetAllByTypeResponse_TypeItem struct {
 
 func (x *GetAllByTypeResponse_TypeItem) Reset() {
 	*x = GetAllByTypeResponse_TypeItem{}
-	mi := &file_internal_protobuf_vault_proto_msgTypes[9]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -472,7 +579,7 @@ func (x *GetAllByTypeResponse_TypeItem) String() string {
 func (*GetAllByTypeResponse_TypeItem) ProtoMessage() {}
 
 func (x *GetAllByTypeResponse_TypeItem) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_protobuf_vault_proto_msgTypes[9]
+	mi := &file_internal_protobuf_vault_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -485,7 +592,7 @@ func (x *GetAllByTypeResponse_TypeItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAllByTypeResponse_TypeItem.ProtoReflect.Descriptor instead.
 func (*GetAllByTypeResponse_TypeItem) Descriptor() ([]byte, []int) {
-	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{8, 0}
+	return file_internal_protobuf_vault_proto_rawDescGZIP(), []int{11, 0}
 }
 
 func (x *GetAllByTypeResponse_TypeItem) GetId() string {
@@ -514,18 +621,21 @@ const file_internal_protobuf_vault_proto_rawDesc = "" +
 	"recordType\x12\x12\n" +
 	"\x04meta\x18\x03 \x01(\tR\x04meta\"9\n" +
 	"\x0eAddDataRequest\x12'\n" +
-	"\x04item\x18\x01 \x01(\v2\x13.gophkeeper.v1.ItemR\x04item\" \n" +
+	"\x04item\x18\x01 \x01(\v2\x13.gophkeeper.v1.ItemR\x04item\"\x11\n" +
+	"\x0fAddDataResponse\" \n" +
 	"\x0eGetDataRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"J\n" +
 	"\x0fGetDataResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12'\n" +
 	"\x04item\x18\x02 \x01(\v2\x13.gophkeeper.v1.ItemR\x04item\"#\n" +
 	"\x11DeleteDataRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"K\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x14\n" +
+	"\x12DeleteDataResponse\"K\n" +
 	"\x11UpdateDataRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04data\x18\x02 \x01(\fR\x04data\x12\x12\n" +
-	"\x04meta\x18\x03 \x01(\tR\x04meta\"6\n" +
+	"\x04meta\x18\x03 \x01(\tR\x04meta\"\x14\n" +
+	"\x12UpdateDataResponse\"6\n" +
 	"\x13GetAllByTypeRequest\x12\x1f\n" +
 	"\vrecord_type\x18\x01 \x01(\tR\n" +
 	"recordType\"\x8a\x01\n" +
@@ -533,14 +643,14 @@ const file_internal_protobuf_vault_proto_rawDesc = "" +
 	"\x05items\x18\x01 \x03(\v2,.gophkeeper.v1.GetAllByTypeResponse.TypeItemR\x05items\x1a.\n" +
 	"\bTypeItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04meta\x18\x02 \x01(\tR\x04meta2\xfd\x02\n" +
-	"\fVaultService\x12>\n" +
-	"\aAddData\x12\x1d.gophkeeper.v1.AddDataRequest\x1a\x14.gophkeeper.v1.Empty\x12H\n" +
-	"\aGetData\x12\x1d.gophkeeper.v1.GetDataRequest\x1a\x1e.gophkeeper.v1.GetDataResponse\x12D\n" +
+	"\x04meta\x18\x02 \x01(\tR\x04meta2\xa1\x03\n" +
+	"\fVaultService\x12H\n" +
+	"\aAddData\x12\x1d.gophkeeper.v1.AddDataRequest\x1a\x1e.gophkeeper.v1.AddDataResponse\x12H\n" +
+	"\aGetData\x12\x1d.gophkeeper.v1.GetDataRequest\x1a\x1e.gophkeeper.v1.GetDataResponse\x12Q\n" +
 	"\n" +
-	"DeleteData\x12 .gophkeeper.v1.DeleteDataRequest\x1a\x14.gophkeeper.v1.Empty\x12D\n" +
+	"DeleteData\x12 .gophkeeper.v1.DeleteDataRequest\x1a!.gophkeeper.v1.DeleteDataResponse\x12Q\n" +
 	"\n" +
-	"UpdateData\x12 .gophkeeper.v1.UpdateDataRequest\x1a\x14.gophkeeper.v1.Empty\x12W\n" +
+	"UpdateData\x12 .gophkeeper.v1.UpdateDataRequest\x1a!.gophkeeper.v1.UpdateDataResponse\x12W\n" +
 	"\fGetAllByType\x12\".gophkeeper.v1.GetAllByTypeRequest\x1a#.gophkeeper.v1.GetAllByTypeResponseB7Z5github.com/msorokin-hash/passkeeper/internal/protobufb\x06proto3"
 
 var (
@@ -555,38 +665,41 @@ func file_internal_protobuf_vault_proto_rawDescGZIP() []byte {
 	return file_internal_protobuf_vault_proto_rawDescData
 }
 
-var file_internal_protobuf_vault_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_internal_protobuf_vault_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_internal_protobuf_vault_proto_goTypes = []any{
 	(*Empty)(nil),                         // 0: gophkeeper.v1.Empty
 	(*Item)(nil),                          // 1: gophkeeper.v1.Item
 	(*AddDataRequest)(nil),                // 2: gophkeeper.v1.AddDataRequest
-	(*GetDataRequest)(nil),                // 3: gophkeeper.v1.GetDataRequest
-	(*GetDataResponse)(nil),               // 4: gophkeeper.v1.GetDataResponse
-	(*DeleteDataRequest)(nil),             // 5: gophkeeper.v1.DeleteDataRequest
-	(*UpdateDataRequest)(nil),             // 6: gophkeeper.v1.UpdateDataRequest
-	(*GetAllByTypeRequest)(nil),           // 7: gophkeeper.v1.GetAllByTypeRequest
-	(*GetAllByTypeResponse)(nil),          // 8: gophkeeper.v1.GetAllByTypeResponse
-	(*GetAllByTypeResponse_TypeItem)(nil), // 9: gophkeeper.v1.GetAllByTypeResponse.TypeItem
+	(*AddDataResponse)(nil),               // 3: gophkeeper.v1.AddDataResponse
+	(*GetDataRequest)(nil),                // 4: gophkeeper.v1.GetDataRequest
+	(*GetDataResponse)(nil),               // 5: gophkeeper.v1.GetDataResponse
+	(*DeleteDataRequest)(nil),             // 6: gophkeeper.v1.DeleteDataRequest
+	(*DeleteDataResponse)(nil),            // 7: gophkeeper.v1.DeleteDataResponse
+	(*UpdateDataRequest)(nil),             // 8: gophkeeper.v1.UpdateDataRequest
+	(*UpdateDataResponse)(nil),            // 9: gophkeeper.v1.UpdateDataResponse
+	(*GetAllByTypeRequest)(nil),           // 10: gophkeeper.v1.GetAllByTypeRequest
+	(*GetAllByTypeResponse)(nil),          // 11: gophkeeper.v1.GetAllByTypeResponse
+	(*GetAllByTypeResponse_TypeItem)(nil), // 12: gophkeeper.v1.GetAllByTypeResponse.TypeItem
 }
 var file_internal_protobuf_vault_proto_depIdxs = []int32{
-	1, // 0: gophkeeper.v1.AddDataRequest.item:type_name -> gophkeeper.v1.Item
-	1, // 1: gophkeeper.v1.GetDataResponse.item:type_name -> gophkeeper.v1.Item
-	9, // 2: gophkeeper.v1.GetAllByTypeResponse.items:type_name -> gophkeeper.v1.GetAllByTypeResponse.TypeItem
-	2, // 3: gophkeeper.v1.VaultService.AddData:input_type -> gophkeeper.v1.AddDataRequest
-	3, // 4: gophkeeper.v1.VaultService.GetData:input_type -> gophkeeper.v1.GetDataRequest
-	5, // 5: gophkeeper.v1.VaultService.DeleteData:input_type -> gophkeeper.v1.DeleteDataRequest
-	6, // 6: gophkeeper.v1.VaultService.UpdateData:input_type -> gophkeeper.v1.UpdateDataRequest
-	7, // 7: gophkeeper.v1.VaultService.GetAllByType:input_type -> gophkeeper.v1.GetAllByTypeRequest
-	0, // 8: gophkeeper.v1.VaultService.AddData:output_type -> gophkeeper.v1.Empty
-	4, // 9: gophkeeper.v1.VaultService.GetData:output_type -> gophkeeper.v1.GetDataResponse
-	0, // 10: gophkeeper.v1.VaultService.DeleteData:output_type -> gophkeeper.v1.Empty
-	0, // 11: gophkeeper.v1.VaultService.UpdateData:output_type -> gophkeeper.v1.Empty
-	8, // 12: gophkeeper.v1.VaultService.GetAllByType:output_type -> gophkeeper.v1.GetAllByTypeResponse
-	8, // [8:13] is the sub-list for method output_type
-	3, // [3:8] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	1,  // 0: gophkeeper.v1.AddDataRequest.item:type_name -> gophkeeper.v1.Item
+	1,  // 1: gophkeeper.v1.GetDataResponse.item:type_name -> gophkeeper.v1.Item
+	12, // 2: gophkeeper.v1.GetAllByTypeResponse.items:type_name -> gophkeeper.v1.GetAllByTypeResponse.TypeItem
+	2,  // 3: gophkeeper.v1.VaultService.AddData:input_type -> gophkeeper.v1.AddDataRequest
+	4,  // 4: gophkeeper.v1.VaultService.GetData:input_type -> gophkeeper.v1.GetDataRequest
+	6,  // 5: gophkeeper.v1.VaultService.DeleteData:input_type -> gophkeeper.v1.DeleteDataRequest
+	8,  // 6: gophkeeper.v1.VaultService.UpdateData:input_type -> gophkeeper.v1.UpdateDataRequest
+	10, // 7: gophkeeper.v1.VaultService.GetAllByType:input_type -> gophkeeper.v1.GetAllByTypeRequest
+	3,  // 8: gophkeeper.v1.VaultService.AddData:output_type -> gophkeeper.v1.AddDataResponse
+	5,  // 9: gophkeeper.v1.VaultService.GetData:output_type -> gophkeeper.v1.GetDataResponse
+	7,  // 10: gophkeeper.v1.VaultService.DeleteData:output_type -> gophkeeper.v1.DeleteDataResponse
+	9,  // 11: gophkeeper.v1.VaultService.UpdateData:output_type -> gophkeeper.v1.UpdateDataResponse
+	11, // 12: gophkeeper.v1.VaultService.GetAllByType:output_type -> gophkeeper.v1.GetAllByTypeResponse
+	8,  // [8:13] is the sub-list for method output_type
+	3,  // [3:8] is the sub-list for method input_type
+	3,  // [3:3] is the sub-list for extension type_name
+	3,  // [3:3] is the sub-list for extension extendee
+	0,  // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_internal_protobuf_vault_proto_init() }
@@ -600,7 +713,7 @@ func file_internal_protobuf_vault_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_protobuf_vault_proto_rawDesc), len(file_internal_protobuf_vault_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

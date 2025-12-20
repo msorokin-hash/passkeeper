@@ -19,7 +19,7 @@ import (
 )
 
 var lifeTime = 3600
-var tokenKey = "secret"
+var tokenKey = "secret123456789"
 var masterKey = "1d0e95ed9e11b59ba42200720c252f98d4cd440412926a0c15b6a95e03ab4480"
 
 func TestGRPCUserHandler_Register(t *testing.T) {
@@ -47,10 +47,20 @@ func TestGRPCUserHandler_Register(t *testing.T) {
 		errCode codes.Code
 	}{
 		{
-			name: "create user with success result",
+			name: "invalid password",
 			request: &proto.RegisterRequest{
 				Login:    "user",
 				Password: "password",
+			},
+			store:   nil,
+			wantErr: true,
+			errCode: codes.InvalidArgument,
+		},
+		{
+			name: "create user with success result",
+			request: &proto.RegisterRequest{
+				Login:    "user",
+				Password: "password1234",
 			},
 			store: &Store{
 				err:    nil,
@@ -62,7 +72,7 @@ func TestGRPCUserHandler_Register(t *testing.T) {
 			name: "create user that already exists",
 			request: &proto.RegisterRequest{
 				Login:    "user",
-				Password: "password",
+				Password: "password1234",
 			},
 			store: &Store{
 				err: errorscustom.ErrLoginTaken,
@@ -74,7 +84,7 @@ func TestGRPCUserHandler_Register(t *testing.T) {
 			name: "internal database error",
 			request: &proto.RegisterRequest{
 				Login:    "user",
-				Password: "password",
+				Password: "password1234",
 			},
 			store: &Store{
 				err: errorscustom.ErrInternalDatabase,
@@ -136,7 +146,7 @@ func TestGRPCUserHandler_Login(t *testing.T) {
 			name: "success user login",
 			request: &proto.LoginRequest{
 				Login:    "user",
-				Password: "password",
+				Password: "password1234",
 			},
 			store: &Store{
 				err:   nil,
@@ -154,7 +164,7 @@ func TestGRPCUserHandler_Login(t *testing.T) {
 			name: "failed user login with incorrect password",
 			request: &proto.LoginRequest{
 				Login:    "user",
-				Password: "password",
+				Password: "password1234",
 			},
 			store: &Store{
 				err:   nil,
@@ -173,7 +183,7 @@ func TestGRPCUserHandler_Login(t *testing.T) {
 			name: "failed user login with incorrect username",
 			request: &proto.LoginRequest{
 				Login:    "user",
-				Password: "password",
+				Password: "password1234",
 			},
 			store: &Store{
 				err:      errorscustom.ErrNoUser,

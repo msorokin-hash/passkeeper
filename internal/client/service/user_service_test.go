@@ -92,7 +92,7 @@ func TestService_Register(t *testing.T) {
 				assert.EqualError(t, err, tt.want.err.Error())
 				assert.Empty(t, jwt)
 
-				_, readErr := utils.ReadFile(filepath.Join(workDir, "token.jwt"))
+				_, readErr := utils.ReadFile(filepath.Join(workDir, ".token.jwt"))
 				assert.Error(t, readErr)
 
 				return
@@ -101,7 +101,7 @@ func TestService_Register(t *testing.T) {
 			assert.NoError(t, err)
 			assert.Equal(t, tt.want.jwt, jwt)
 
-			tokenData, readErr := utils.ReadFile(filepath.Join(workDir, "token.jwt"))
+			tokenData, readErr := utils.ReadFile(filepath.Join(workDir, ".token.jwt"))
 			assert.NoError(t, readErr)
 			assert.Equal(t, tt.want.jwt, string(tokenData))
 		})
@@ -185,7 +185,7 @@ func TestService_Login(t *testing.T) {
 				assert.EqualError(t, err, tt.want.err)
 				assert.Empty(t, jwt)
 
-				tokenFilePath := filepath.Join(workDir, "token.jwt")
+				tokenFilePath := filepath.Join(workDir, ".token.jwt")
 				_, readErr := os.ReadFile(tokenFilePath)
 				assert.Error(t, readErr)
 
@@ -195,7 +195,7 @@ func TestService_Login(t *testing.T) {
 			assert.NoError(t, err)
 			assert.Equal(t, tt.want.jwt, jwt)
 
-			tokenFilePath := filepath.Join(workDir, "token.jwt")
+			tokenFilePath := filepath.Join(workDir, ".token.jwt")
 			data, readErr := os.ReadFile(tokenFilePath)
 			assert.NoError(t, readErr)
 			assert.Equal(t, tt.want.jwt, string(data))

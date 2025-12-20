@@ -115,7 +115,7 @@ use_tls: false
 
 - `server_address` — gRPC server address
 - `work_dir` — client working directory:
-  - stores the JWT token (`token.jwt`)
+  - stores the JWT token (`.token.jwt`)
   - used to save downloaded files
 - `use_tls` — enable or disable TLS
 

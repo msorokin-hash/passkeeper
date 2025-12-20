@@ -54,14 +54,6 @@ func (c *DatabaseConfig) PGConnectionString() string {
 		"?sslmode=disable"
 }
 
-// MongoConnectionString constructs and returns the MongoDB connection string.
-// Authentication is performed using the same database name as the auth source.
-func (c *DatabaseConfig) MongoConnectionString() string {
-	return "mongodb://" + c.User + ":" + c.Password +
-		"@" + c.Host + ":" + c.Port + "/" + c.Name +
-		"?authSource=" + c.Name
-}
-
 // Load loads application configuration from the `server.yaml` file,
 // falling back to default values if the file is missing. Values may also be
 // overridden using environment variables with the prefix `PASSKEEPER_`.
@@ -95,7 +87,7 @@ func Load() (*Config, error) {
 	}
 
 	if err := validateConfig(&cfg); err != nil {
-		return nil, fmt.Errorf("error unmarshal configuration: %w", err)
+		return nil, fmt.Errorf("invalid configuration: %w", err)
 	}
 
 	return &cfg, nil
@@ -108,8 +100,13 @@ func validateConfig(config *Config) error {
 	if config.Server.Address == "" {
 		return fmt.Errorf("server.address required")
 	}
-	if config.Server.MasterKey == "" {
-		return fmt.Errorf("server.master_key required")
+	if len(config.Server.MasterKey) < 32 {
+		return fmt.Errorf("server.master_key must be at least 32 characters")
+	}
+	if len(config.Server.TokenKey) < 32 {
+		return fmt.Errorf(
+			"server.token_key too short (must be >= 32 chars), do not use weak secrets like 'changeit'",
+		)
 	}
 	if config.Server.TokenLifetime <= 0 {
 		return fmt.Errorf("server.token_lifetime must be positive")

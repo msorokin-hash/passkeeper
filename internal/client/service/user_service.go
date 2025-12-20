@@ -29,8 +29,8 @@ func (s *Service) Login(ctx context.Context, login string, password string) (tok
 		return "", err
 	}
 
-	tokenFilePath := filepath.Join(s.workDir, "token.jwt")
-	err = utils.AppendToFile(tokenFilePath, res.GetToken())
+	tokenFilePath := filepath.Join(s.workDir, ".token.jwt")
+	err = utils.OverwriteFile(tokenFilePath, res.GetToken())
 	if err != nil {
 		return "", fmt.Errorf("failed to write token to file: %w", err)
 	}
@@ -56,8 +56,8 @@ func (s *Service) Register(ctx context.Context, login string, password string) (
 		return "", err
 	}
 
-	tokenFilePath := filepath.Join(s.workDir, "token.jwt")
-	err = utils.AppendToFile(tokenFilePath, res.GetToken())
+	tokenFilePath := filepath.Join(s.workDir, ".token.jwt")
+	err = utils.OverwriteFile(tokenFilePath, res.GetToken())
 	if err != nil {
 		return "", fmt.Errorf("failed to write token to file: %w", err)
 	}

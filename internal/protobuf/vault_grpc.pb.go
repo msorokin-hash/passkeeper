@@ -8,7 +8,6 @@ package protobuf
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,10 +30,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type VaultServiceClient interface {
-	AddData(ctx context.Context, in *AddDataRequest, opts ...grpc.CallOption) (*Empty, error)
+	AddData(ctx context.Context, in *AddDataRequest, opts ...grpc.CallOption) (*AddDataResponse, error)
 	GetData(ctx context.Context, in *GetDataRequest, opts ...grpc.CallOption) (*GetDataResponse, error)
-	DeleteData(ctx context.Context, in *DeleteDataRequest, opts ...grpc.CallOption) (*Empty, error)
-	UpdateData(ctx context.Context, in *UpdateDataRequest, opts ...grpc.CallOption) (*Empty, error)
+	DeleteData(ctx context.Context, in *DeleteDataRequest, opts ...grpc.CallOption) (*DeleteDataResponse, error)
+	UpdateData(ctx context.Context, in *UpdateDataRequest, opts ...grpc.CallOption) (*UpdateDataResponse, error)
 	GetAllByType(ctx context.Context, in *GetAllByTypeRequest, opts ...grpc.CallOption) (*GetAllByTypeResponse, error)
 }
 
@@ -46,9 +45,9 @@ func NewVaultServiceClient(cc grpc.ClientConnInterface) VaultServiceClient {
 	return &vaultServiceClient{cc}
 }
 
-func (c *vaultServiceClient) AddData(ctx context.Context, in *AddDataRequest, opts ...grpc.CallOption) (*Empty, error) {
+func (c *vaultServiceClient) AddData(ctx context.Context, in *AddDataRequest, opts ...grpc.CallOption) (*AddDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Empty)
+	out := new(AddDataResponse)
 	err := c.cc.Invoke(ctx, VaultService_AddData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -66,9 +65,9 @@ func (c *vaultServiceClient) GetData(ctx context.Context, in *GetDataRequest, op
 	return out, nil
 }
 
-func (c *vaultServiceClient) DeleteData(ctx context.Context, in *DeleteDataRequest, opts ...grpc.CallOption) (*Empty, error) {
+func (c *vaultServiceClient) DeleteData(ctx context.Context, in *DeleteDataRequest, opts ...grpc.CallOption) (*DeleteDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Empty)
+	out := new(DeleteDataResponse)
 	err := c.cc.Invoke(ctx, VaultService_DeleteData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -76,9 +75,9 @@ func (c *vaultServiceClient) DeleteData(ctx context.Context, in *DeleteDataReque
 	return out, nil
 }
 
-func (c *vaultServiceClient) UpdateData(ctx context.Context, in *UpdateDataRequest, opts ...grpc.CallOption) (*Empty, error) {
+func (c *vaultServiceClient) UpdateData(ctx context.Context, in *UpdateDataRequest, opts ...grpc.CallOption) (*UpdateDataResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Empty)
+	out := new(UpdateDataResponse)
 	err := c.cc.Invoke(ctx, VaultService_UpdateData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -100,10 +99,10 @@ func (c *vaultServiceClient) GetAllByType(ctx context.Context, in *GetAllByTypeR
 // All implementations must embed UnimplementedVaultServiceServer
 // for forward compatibility.
 type VaultServiceServer interface {
-	AddData(context.Context, *AddDataRequest) (*Empty, error)
+	AddData(context.Context, *AddDataRequest) (*AddDataResponse, error)
 	GetData(context.Context, *GetDataRequest) (*GetDataResponse, error)
-	DeleteData(context.Context, *DeleteDataRequest) (*Empty, error)
-	UpdateData(context.Context, *UpdateDataRequest) (*Empty, error)
+	DeleteData(context.Context, *DeleteDataRequest) (*DeleteDataResponse, error)
+	UpdateData(context.Context, *UpdateDataRequest) (*UpdateDataResponse, error)
 	GetAllByType(context.Context, *GetAllByTypeRequest) (*GetAllByTypeResponse, error)
 	mustEmbedUnimplementedVaultServiceServer()
 }
@@ -115,16 +114,16 @@ type VaultServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedVaultServiceServer struct{}
 
-func (UnimplementedVaultServiceServer) AddData(context.Context, *AddDataRequest) (*Empty, error) {
+func (UnimplementedVaultServiceServer) AddData(context.Context, *AddDataRequest) (*AddDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddData not implemented")
 }
 func (UnimplementedVaultServiceServer) GetData(context.Context, *GetDataRequest) (*GetDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetData not implemented")
 }
-func (UnimplementedVaultServiceServer) DeleteData(context.Context, *DeleteDataRequest) (*Empty, error) {
+func (UnimplementedVaultServiceServer) DeleteData(context.Context, *DeleteDataRequest) (*DeleteDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteData not implemented")
 }
-func (UnimplementedVaultServiceServer) UpdateData(context.Context, *UpdateDataRequest) (*Empty, error) {
+func (UnimplementedVaultServiceServer) UpdateData(context.Context, *UpdateDataRequest) (*UpdateDataResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateData not implemented")
 }
 func (UnimplementedVaultServiceServer) GetAllByType(context.Context, *GetAllByTypeRequest) (*GetAllByTypeResponse, error) {

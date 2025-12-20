@@ -37,7 +37,7 @@ func TokenInterceptor(workDir string) grpc.UnaryClientInterceptor {
 		invoker grpc.UnaryInvoker,
 		opts ...grpc.CallOption,
 	) error {
-		tokenFilePath := filepath.Join(workDir, "token.jwt")
+		tokenFilePath := filepath.Join(workDir, ".token.jwt")
 
 		token, err := utils.ReadFile(tokenFilePath)
 		if err != nil {

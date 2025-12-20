@@ -26,7 +26,7 @@ func TestTokenInterceptor_AddsAuthorizationHeader(t *testing.T) {
 	t.Helper()
 
 	workDir := t.TempDir()
-	tokenFilePath := filepath.Join(workDir, "token.jwt")
+	tokenFilePath := filepath.Join(workDir, ".token.jwt")
 
 	const tokenValue = "test-token-123"
 	if err := os.WriteFile(tokenFilePath, []byte(tokenValue+"\n"), 0o600); err != nil {
@@ -70,7 +70,7 @@ func TestTokenInterceptor_NoTokenFile_NoAuthHeader(t *testing.T) {
 	t.Helper()
 
 	workDir := t.TempDir()
-	tokenFilePath := filepath.Join(workDir, "token.jwt")
+	tokenFilePath := filepath.Join(workDir, ".token.jwt")
 
 	if err := os.Remove(tokenFilePath); err != nil && !errors.Is(err, os.ErrNotExist) {
 		t.Fatalf("failed to ensure token file does not exist: %v", err)
@@ -108,7 +108,7 @@ func TestTokenInterceptor_UserServiceMethod_NoAuthHeader(t *testing.T) {
 	t.Helper()
 
 	workDir := t.TempDir()
-	tokenFilePath := filepath.Join(workDir, "token.jwt")
+	tokenFilePath := filepath.Join(workDir, ".token.jwt")
 
 	const tokenValue = "user-service-token"
 	if err := os.WriteFile(tokenFilePath, []byte(tokenValue), 0o600); err != nil {
@@ -148,7 +148,7 @@ func TestTokenInterceptor_Unauthenticated_RemovesTokenFile(t *testing.T) {
 	t.Helper()
 
 	workDir := t.TempDir()
-	tokenFilePath := filepath.Join(workDir, "token.jwt")
+	tokenFilePath := filepath.Join(workDir, ".token.jwt")
 
 	const tokenValue = "expired-or-invalid-token"
 	if err := os.WriteFile(tokenFilePath, []byte(tokenValue), 0o600); err != nil {

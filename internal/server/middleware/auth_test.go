@@ -112,3 +112,40 @@ func Test_AuthenticateUser_BadToken_ReturnsUnauthenticated(t *testing.T) {
 		t.Fatalf("expected Unauthenticated, got %v (err=%v)", status.Code(err), err)
 	}
 }
+
+func Test_AuthenticateUser_MissingMetadata_ReturnsUnauthenticated(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mockStorage := mocks.NewMockStorage(ctrl)
+	mockTokenService := tmock.NewMockTokenService(ctrl)
+	logger, _ := test.NewNullLogger()
+	entry := logrus.NewEntry(logger)
+	masterKey := "1d0e95ed9e11b59ba42200720c252f98d4cd440412926a0c15b6a95e03ab4480"
+
+	interceptor := NewAuthInterceptor(masterKey, mockStorage, mockTokenService, entry)
+
+	info := &grpc.UnaryServerInfo{
+		FullMethod: "/gophkeeper.v1.VaultService/AddData",
+	}
+
+	ctx := context.Background()
+
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		t.Fatalf("handler should not be called")
+		return nil, nil
+	}
+
+	_, err := interceptor.AuthenticateUser(ctx, "req", info, handler)
+	if err == nil {
+		t.Fatalf("expected error, got nil")
+	}
+
+	if status.Code(err) != codes.Unauthenticated {
+		t.Fatalf(
+			"expected Unauthenticated, got %v (err=%v)",
+			status.Code(err),
+			err,
+		)
+	}
+}

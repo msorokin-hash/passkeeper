@@ -50,6 +50,10 @@ func (h *GRPCUserHandler) Register(ctx context.Context, in *proto.RegisterReques
 		return nil, status.Error(codes.InvalidArgument, "login or password is empty")
 	}
 
+	if err := utils.ValidatePassword(in.GetPassword()); err != nil {
+		return nil, status.Errorf(codes.InvalidArgument, "invalid password: %s", err.Error())
+	}
+
 	hash, err := utils.GeneratePasswordHash(in.GetPassword())
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "%s", err.Error())
@@ -75,9 +79,9 @@ func (h *GRPCUserHandler) Register(ctx context.Context, in *proto.RegisterReques
 	if err != nil {
 		switch {
 		case errors.Is(err, errorscustom.ErrLoginTaken):
-			return nil, status.Error(codes.InvalidArgument, "user already exists")
+			return nil, status.Error(codes.InvalidArgument, "login or email is already taken")
 		default:
-			h.log.WithError(err).Error("error while creating user")
+			h.log.WithError(err).Error("failed to create user")
 			return nil, status.Errorf(codes.Internal, "%s", err.Error())
 		}
 	}

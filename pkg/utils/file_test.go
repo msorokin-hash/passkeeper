@@ -8,10 +8,9 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestReadFile(t *testing.T) {
-	tmpFile, err := os.CreateTemp("", "testfile_*.txt")
+func TestReadFile_Success(t *testing.T) {
+	tmpFile, err := os.CreateTemp(t.TempDir(), "testfile_*.txt")
 	assert.NoError(t, err)
-	defer os.Remove(tmpFile.Name())
 
 	content := "hello world"
 	_, err = tmpFile.WriteString(content)
@@ -24,26 +23,28 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestReadFile_NotExists(t *testing.T) {
-	_, err := ReadFile("no_such_file_12345.txt")
+	path := filepath.Join(t.TempDir(), "no_such_file_12345.txt")
+
+	_, err := ReadFile(path)
 	assert.Error(t, err)
+	assert.ErrorContains(t, err, "file does not exist")
 }
 
-func TestAppendToFile_CreateIfNotExists(t *testing.T) {
+func TestOverwriteFile_CreatesNewFile(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "new_file.txt")
 
 	text := "hello world\n"
 
-	err := AppendToFile(path, text)
+	err := OverwriteFile(path, text)
 	assert.NoError(t, err)
 
 	data, err := os.ReadFile(path)
 	assert.NoError(t, err)
-
 	assert.Equal(t, text, string(data))
 }
 
-func TestAppendToFile_OverrideIfExists(t *testing.T) {
+func TestOverwriteFile_TruncatesExistingFile(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "existing.txt")
 
@@ -52,11 +53,10 @@ func TestAppendToFile_OverrideIfExists(t *testing.T) {
 	assert.NoError(t, err)
 
 	newText := "new content\n"
-	err = AppendToFile(path, newText)
+	err = OverwriteFile(path, newText)
 	assert.NoError(t, err)
 
 	data, err := os.ReadFile(path)
 	assert.NoError(t, err)
-
 	assert.Equal(t, newText, string(data))
 }

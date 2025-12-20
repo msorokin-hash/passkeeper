@@ -54,8 +54,6 @@ func (p *PGStorage) GetUserByID(ctx context.Context, id string) (user *entity.Us
 		return nil, fmt.Errorf("failed to get user from db: %w", err)
 	}
 
-	u.ID = id
-
 	return &u, nil
 }
 

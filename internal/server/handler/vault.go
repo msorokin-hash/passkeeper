@@ -126,7 +126,7 @@ func (h *GRPCVaultHandler) GetAllByType(ctx context.Context, in *proto.GetAllByT
 // DeleteData removes a stored vault item by its ID.
 // Returns errors for missing IDs, unauthenticated users,
 // missing items, or storage failures.
-func (h *GRPCVaultHandler) DeleteData(ctx context.Context, in *proto.DeleteDataRequest) (*proto.Empty, error) {
+func (h *GRPCVaultHandler) DeleteData(ctx context.Context, in *proto.DeleteDataRequest) (*proto.DeleteDataResponse, error) {
 	if in.GetId() == "" {
 		return nil, status.Error(codes.InvalidArgument, "id is empty")
 	}
@@ -147,13 +147,13 @@ func (h *GRPCVaultHandler) DeleteData(ctx context.Context, in *proto.DeleteDataR
 		}
 	}
 
-	return &proto.Empty{}, nil
+	return &proto.DeleteDataResponse{}, nil
 }
 
 // AddData encrypts the provided data and stores it as a new vault item.
 // Returns errors for missing input, unauthenticated users,
 // encryption failures, or storage issues.
-func (h *GRPCVaultHandler) AddData(ctx context.Context, in *proto.AddDataRequest) (*proto.Empty, error) {
+func (h *GRPCVaultHandler) AddData(ctx context.Context, in *proto.AddDataRequest) (*proto.AddDataResponse, error) {
 	item := in.GetItem()
 	if item == nil {
 		return nil, status.Error(codes.InvalidArgument, "no data stored")
@@ -185,13 +185,13 @@ func (h *GRPCVaultHandler) AddData(ctx context.Context, in *proto.AddDataRequest
 		return nil, status.Error(codes.Internal, "error while creating vault secret")
 	}
 
-	return &proto.Empty{}, nil
+	return &proto.AddDataResponse{}, nil
 }
 
 // UpdateData encrypts and updates an existing vault item by ID.
 // Returns errors for missing IDs, unauthenticated users,
 // encryption failures, missing items, or storage errors.
-func (h *GRPCVaultHandler) UpdateData(ctx context.Context, in *proto.UpdateDataRequest) (*proto.Empty, error) {
+func (h *GRPCVaultHandler) UpdateData(ctx context.Context, in *proto.UpdateDataRequest) (*proto.UpdateDataResponse, error) {
 	if in.GetId() == "" {
 		return nil, status.Error(codes.InvalidArgument, "id is empty")
 	}
@@ -225,7 +225,7 @@ func (h *GRPCVaultHandler) UpdateData(ctx context.Context, in *proto.UpdateDataR
 		}
 	}
 
-	return &proto.Empty{}, nil
+	return &proto.UpdateDataResponse{}, nil
 }
 
 // isValidDataType checks if the given string represents a valid data type.

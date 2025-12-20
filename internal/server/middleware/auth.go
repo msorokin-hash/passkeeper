@@ -72,7 +72,10 @@ func (i *AuthInterceptor) AuthenticateUser(
 
 	var tokenStr string
 
-	md, _ := metadata.FromIncomingContext(ctx)
+	md, ok := metadata.FromIncomingContext(ctx)
+	if !ok {
+		return nil, status.Error(codes.Unauthenticated, "missing metadata")
+	}
 
 	if authHeaders := md.Get("authorization"); len(authHeaders) > 0 {
 		if strings.HasPrefix(authHeaders[0], "Bearer ") {

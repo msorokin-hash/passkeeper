@@ -43,14 +43,14 @@ func (m *MockVaultServiceClient) EXPECT() *MockVaultServiceClientMockRecorder {
 }
 
 // AddData mocks base method.
-func (m *MockVaultServiceClient) AddData(ctx context.Context, in *protobuf.AddDataRequest, opts ...grpc.CallOption) (*protobuf.Empty, error) {
+func (m *MockVaultServiceClient) AddData(ctx context.Context, in *protobuf.AddDataRequest, opts ...grpc.CallOption) (*protobuf.AddDataResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "AddData", varargs...)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.AddDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -63,14 +63,14 @@ func (mr *MockVaultServiceClientMockRecorder) AddData(ctx, in any, opts ...any) 
 }
 
 // DeleteData mocks base method.
-func (m *MockVaultServiceClient) DeleteData(ctx context.Context, in *protobuf.DeleteDataRequest, opts ...grpc.CallOption) (*protobuf.Empty, error) {
+func (m *MockVaultServiceClient) DeleteData(ctx context.Context, in *protobuf.DeleteDataRequest, opts ...grpc.CallOption) (*protobuf.DeleteDataResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "DeleteData", varargs...)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.DeleteDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -123,14 +123,14 @@ func (mr *MockVaultServiceClientMockRecorder) GetData(ctx, in any, opts ...any) 
 }
 
 // UpdateData mocks base method.
-func (m *MockVaultServiceClient) UpdateData(ctx context.Context, in *protobuf.UpdateDataRequest, opts ...grpc.CallOption) (*protobuf.Empty, error) {
+func (m *MockVaultServiceClient) UpdateData(ctx context.Context, in *protobuf.UpdateDataRequest, opts ...grpc.CallOption) (*protobuf.UpdateDataResponse, error) {
 	m.ctrl.T.Helper()
 	varargs := []any{ctx, in}
 	for _, a := range opts {
 		varargs = append(varargs, a)
 	}
 	ret := m.ctrl.Call(m, "UpdateData", varargs...)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.UpdateDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -167,10 +167,10 @@ func (m *MockVaultServiceServer) EXPECT() *MockVaultServiceServerMockRecorder {
 }
 
 // AddData mocks base method.
-func (m *MockVaultServiceServer) AddData(arg0 context.Context, arg1 *protobuf.AddDataRequest) (*protobuf.Empty, error) {
+func (m *MockVaultServiceServer) AddData(arg0 context.Context, arg1 *protobuf.AddDataRequest) (*protobuf.AddDataResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AddData", arg0, arg1)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.AddDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -182,10 +182,10 @@ func (mr *MockVaultServiceServerMockRecorder) AddData(arg0, arg1 any) *gomock.Ca
 }
 
 // DeleteData mocks base method.
-func (m *MockVaultServiceServer) DeleteData(arg0 context.Context, arg1 *protobuf.DeleteDataRequest) (*protobuf.Empty, error) {
+func (m *MockVaultServiceServer) DeleteData(arg0 context.Context, arg1 *protobuf.DeleteDataRequest) (*protobuf.DeleteDataResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "DeleteData", arg0, arg1)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.DeleteDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
@@ -227,10 +227,10 @@ func (mr *MockVaultServiceServerMockRecorder) GetData(arg0, arg1 any) *gomock.Ca
 }
 
 // UpdateData mocks base method.
-func (m *MockVaultServiceServer) UpdateData(arg0 context.Context, arg1 *protobuf.UpdateDataRequest) (*protobuf.Empty, error) {
+func (m *MockVaultServiceServer) UpdateData(arg0 context.Context, arg1 *protobuf.UpdateDataRequest) (*protobuf.UpdateDataResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateData", arg0, arg1)
-	ret0, _ := ret[0].(*protobuf.Empty)
+	ret0, _ := ret[0].(*protobuf.UpdateDataResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }

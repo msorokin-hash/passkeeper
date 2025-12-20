@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"errors"
-	"fmt"
 	"testing"
 	"time"
 
@@ -60,7 +59,7 @@ func TestTokenData_CreateToken(t *testing.T) {
 		}
 
 		_, err := tokenData.CreateToken(user)
-		fmt.Println(err)
+
 		if err == nil {
 			t.Error("Expected error for empty user ID")
 		}
