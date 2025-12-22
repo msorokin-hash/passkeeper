@@ -1,0 +1,3 @@
+server_address: ":8080"
+work_dir: "CHANGE_ME_WORK_DIR"
+use_tls: false

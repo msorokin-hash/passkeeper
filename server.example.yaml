@@ -1,0 +1,16 @@
+server:
+  address: ":8080"
+  master_key: "CHANGE_ME_MASTER_KEY"
+  token_key: "CHANGE_ME_TOKEN_KEY"
+  token_lifetime: 180
+  use_tls: false
+
+database:
+  host: "localhost"
+  port: "5432"
+  name: "passkeeper"
+  user: "postgres"
+  password: "CHANGE_ME_DB_PASS"
+
+logging:
+  level: "debug"
